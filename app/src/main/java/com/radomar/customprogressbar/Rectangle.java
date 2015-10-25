@@ -6,16 +6,12 @@ import android.view.View;
 /**
  * Created by Radomar on 23.10.2015.
  */
-public class Rectangle extends View {
+public class Rectangle {
 
     public int sideSize;
     public int x;
     public int y;
     private int mOpacity = 255;
-
-    public Rectangle(Context context) {
-        super(context);
-    }
 
     public void setX(int x) {
         this.x = x;

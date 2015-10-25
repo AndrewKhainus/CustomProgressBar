@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by Radomar on 23.10.2015.
  */
-public class MyCustomView extends ViewGroup implements ValueAnimator.AnimatorUpdateListener, ValueAnimator.AnimatorListener {
+public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateListener, ValueAnimator.AnimatorListener {
 
     private List<Rectangle> rectangles = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
@@ -49,7 +49,7 @@ public class MyCustomView extends ViewGroup implements ValueAnimator.AnimatorUpd
         mPaint.setAntiAlias(true);
 //init points
         for (int i = 0; i < 5; i++) {
-            rectangles.add(new Rectangle(getContext()));
+            rectangles.add(new Rectangle());
         }
 
 //init lines
@@ -60,15 +60,6 @@ public class MyCustomView extends ViewGroup implements ValueAnimator.AnimatorUpd
         lines.add(new Line(rectangles.get(0), rectangles.get(2)));
         lines.add(new Line(rectangles.get(1), rectangles.get(3)));
 
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        for (int i = 0; i < 5; i++ ) {
-            addView(rectangles.get(i));
-        }
     }
 
     @Override
@@ -100,15 +91,6 @@ public class MyCustomView extends ViewGroup implements ValueAnimator.AnimatorUpd
         r.sideSize = pointSize * 3;
         r.x = mSideSize / 2 - r.sideSize / 2;
         r.y = mSideSize / 2 - r.sideSize / 2;
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-
-        for (int i = 0; i < getChildCount(); i++ ) {
-            final View r = getChildAt(i);
-            r.layout(left, top, right, bottom);
-        }
     }
 
     @Override
@@ -217,16 +199,16 @@ public class MyCustomView extends ViewGroup implements ValueAnimator.AnimatorUpd
         mAnimationList.add(animator);
 
 //blink small rectangles
-        animator = ObjectAnimator.ofInt(rectangles.get(0), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(3000);
+        animator = ObjectAnimator.ofInt(rectangles.get(0), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
         animator.setStartDelay(3900);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(1), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(3000);
+        animator = ObjectAnimator.ofInt(rectangles.get(1), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
         animator.setStartDelay(3900);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(2), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(3000);
+        animator = ObjectAnimator.ofInt(rectangles.get(2), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
         animator.setStartDelay(3900);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(3), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(3000);
+        animator = ObjectAnimator.ofInt(rectangles.get(3), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
         animator.setStartDelay(3900);
         mAnimationList.add(animator);
 
