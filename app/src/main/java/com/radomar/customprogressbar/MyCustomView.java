@@ -155,7 +155,7 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
     }
 
     public void initAnimationList() {
-        Animator animator;
+        ObjectAnimator animator;
         mAnimationList.clear();
         int center = (mSideSize - rectangles.get(0).sideSize) / 2;
         int rightBottom = mSideSize - rectangles.get(0).sideSize;
@@ -199,17 +199,10 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
         mAnimationList.add(animator);
 
 //blink small rectangles
-        animator = ObjectAnimator.ofInt(rectangles.get(0), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
+        animator = ObjectAnimator.ofFloat(this, View.ALPHA, 0).setDuration(500);
         animator.setStartDelay(3900);
-        mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(1), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
-        animator.setStartDelay(3900);
-        mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(2), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
-        animator.setStartDelay(3900);
-        mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(rectangles.get(3), "Opacity", 255, 0, 255, 0, 255, 0, 255).setDuration(2000);
-        animator.setStartDelay(3900);
+        animator.setRepeatMode(ValueAnimator.REVERSE);
+        animator.setRepeatCount(5);
         mAnimationList.add(animator);
 
 //reverse animation
