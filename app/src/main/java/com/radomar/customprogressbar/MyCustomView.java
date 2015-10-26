@@ -134,7 +134,7 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
     protected void onDraw(Canvas canvas) {
 //Draw points
         for (Rectangle r: rectangles) {
-            mPaint.setAlpha(r.getOpacity());
+            mPaint.setAlpha(r.opacity);
             canvas.drawRect(r.x, r.y, r.x + r.sideSize, r.y + r.sideSize, mPaint);
         }
 
@@ -161,40 +161,41 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
         int rightBottom = mSideSize - rectangles.get(0).sideSize;
 //blink big rectangle
         Rectangle r = rectangles.get(4);
-        mAnimationList.add(ObjectAnimator.ofInt(r, "Opacity", 255, 0, 255, 0, 255, 0).setDuration(3000));
+        mAnimationList.add(ObjectAnimator.ofInt(r, Rectangle.ALPHA, 255, 0, 255, 0, 255, 0).setDuration(3000));
 
 //first point animation
         r = rectangles.get(2);
-        animator = ObjectAnimator.ofInt(r, "Y", rightBottom, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, rightBottom, center);
         animator.setStartDelay(3000);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "X", rightBottom, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, rightBottom, center);
         animator.setStartDelay(3300);
         mAnimationList.add(animator);
 
+
 //second point animation
         r = rectangles.get(3);
-        animator = ObjectAnimator.ofInt(r, "X", 0, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, 0, center);
         animator.setStartDelay(3100);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "Y", rightBottom, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, rightBottom, center);
         animator.setStartDelay(3400);
         mAnimationList.add(animator);
 
 //third point animation
         r = rectangles.get(0);
-        animator = ObjectAnimator.ofInt(r, "Y", 0, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, 0, center);
         animator.setStartDelay(3200);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "X", 0, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, 0, center);
         animator.setStartDelay(3500);
         mAnimationList.add(animator);
 //fourth point animation
         r = rectangles.get(1);
-        animator = ObjectAnimator.ofInt(r, "X", rightBottom, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, rightBottom, center);
         animator.setStartDelay(3300);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "Y", 0, center);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, 0, center);
         animator.setStartDelay(3600);
         mAnimationList.add(animator);
 
@@ -207,36 +208,36 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
 
 //reverse animation
         r = rectangles.get(2);
-        animator = ObjectAnimator.ofInt(r, "X", center, rightBottom);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, center, rightBottom);
         animator.setStartDelay(6900);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "Y", center, rightBottom);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, center, rightBottom);
         animator.setStartDelay(7200);
         mAnimationList.add(animator);
 
         r = rectangles.get(3);
-        animator = ObjectAnimator.ofInt(r, "Y", center, rightBottom);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, center, rightBottom);
         animator.setStartDelay(7000);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "X", center, 0);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, center, 0);
         animator.setStartDelay(7300);
         mAnimationList.add(animator);
 
 
         r = rectangles.get(0);
-        animator = ObjectAnimator.ofInt(r, "X", center, 0);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, center, 0);
         animator.setStartDelay(7100);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "Y", center, 0);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, center, 0);
         animator.setStartDelay(7400);
         mAnimationList.add(animator);
 
 
         r = rectangles.get(1);
-        animator = ObjectAnimator.ofInt(r, "Y", center, 0);
+        animator = ObjectAnimator.ofInt(r, Rectangle.Y, center, 0);
         animator.setStartDelay(7200);
         mAnimationList.add(animator);
-        animator = ObjectAnimator.ofInt(r, "X", center, rightBottom);
+        animator = ObjectAnimator.ofInt(r, Rectangle.X, center, rightBottom);
         animator.setStartDelay(7500);
         mAnimationList.add(animator);
 
