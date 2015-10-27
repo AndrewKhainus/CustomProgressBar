@@ -1,11 +1,9 @@
 package com.radomar.customprogressbar;
 
-import android.content.Context;
 import android.util.Property;
-import android.view.View;
 
 /**
- * Created by Radomar on 23.10.2015.
+ * Created by Radomar on 23.10.2015
  */
 public class Rectangle {
 
@@ -15,9 +13,6 @@ public class Rectangle {
     public int x;
     public int y;
     public int opacity = 255;
-//
-//    public int RectangleCenterX;
-//    public int RectangleCenterY;
 
     public void init(int x, int y, int sideSize) {
         this.x = x;
@@ -25,11 +20,6 @@ public class Rectangle {
         this.sideSize = sideSize;
         this.halfSideSize = sideSize / 2;
     }
-
-//    private void initCenterCoordinates() {
-//        RectangleCenterX = x + sideSize / 2;
-//        RectangleCenterY = y + sideSize / 2;
-//    }
 
     public static final Property<Rectangle, Integer> X = new Property<Rectangle, Integer>(Integer.TYPE,"setX") {
 

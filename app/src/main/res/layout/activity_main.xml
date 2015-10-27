@@ -8,11 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/myCustomView" />
-
-    <!--<com.radomar.customprogressbar.Viewx-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/myCustomView" />-->
+    
 
     <Button
         android:layout_width="wrap_content"
