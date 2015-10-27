@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,30 +66,23 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
         super.onSizeChanged(w, h, oldw, oldh);
 
         int pointSize = mSideSize / 10;
+        int rightSide = mSideSize - pointSize;
+
         Rectangle r = rectangles.get(0);
-        r.sideSize = pointSize;
-        r.x = 0;
-        r.y = 0;
+        r.init(0, 0, pointSize);
 
         r = rectangles.get(1);
-        r.sideSize = pointSize;
-        r.x = mSideSize - pointSize;
-        r.y = 0;
+        r.init(rightSide, 0, pointSize);
 
         r = rectangles.get(2);
-        r.sideSize = pointSize;
-        r.x = mSideSize - pointSize;
-        r.y = mSideSize - pointSize;
+        r.init(rightSide, rightSide, pointSize);
 
         r = rectangles.get(3);
-        r.sideSize = pointSize;
-        r.x = 0;
-        r.y = mSideSize - pointSize;
+        r.init(0, rightSide, pointSize);
 
         r = rectangles.get(4);
-        r.sideSize = pointSize * 3;
-        r.x = mSideSize / 2 - r.sideSize / 2;
-        r.y = mSideSize / 2 - r.sideSize / 2;
+        int beginPoint = mSideSize / 2 - pointSize * 3 / 2;
+        r.init(beginPoint, beginPoint, pointSize * 3);
     }
 
     @Override

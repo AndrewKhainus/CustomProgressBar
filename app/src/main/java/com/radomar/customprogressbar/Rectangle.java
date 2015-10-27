@@ -13,23 +13,20 @@ public class Rectangle {
     public int x;
     public int y;
     public int opacity = 255;
-
-//    public void setX(int x) {
-//        this.x = x;
-//    }
 //
-//    public void setY(int y) {
-//        this.y = y;
-//    }
+//    public int RectangleCenterX;
+//    public int RectangleCenterY;
 
-//    public int getOpacity() {
-//        return mOpacity;
-//    }
-//
-//    public void setOpacity(int mOpacity) {
-//        this.mOpacity = mOpacity;
-//    }
+    public void init(int x, int y, int sideSize) {
+        this.x = x;
+        this.y = y;
+        this.sideSize = sideSize;
+    }
 
+//    private void initCenterCoordinates() {
+//        RectangleCenterX = x + sideSize / 2;
+//        RectangleCenterY = y + sideSize / 2;
+//    }
 
     public static final Property<Rectangle, Integer> X = new Property<Rectangle, Integer>(Integer.TYPE,"setX") {
 
