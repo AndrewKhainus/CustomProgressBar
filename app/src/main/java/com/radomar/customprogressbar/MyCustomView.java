@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateListener, ValueAnimator.AnimatorListener {
 
+    private static final int DESIRE_WIDTH = 400;
+    private static final int DESIRE_HEIGHT = 400;
+
     private List<Rectangle> rectangles = new ArrayList<>();
     private List<Line> lines = new ArrayList<>();
     private Paint mPaint;
@@ -46,6 +49,8 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
         mPaint.setColor(getResources().getColor(R.color.baseColor));
         mPaint.setStrokeWidth(5f);
         mPaint.setAntiAlias(true);
+
+        mSet.addListener(this);
 //init points
         for (int i = 0; i < 5; i++) {
             rectangles.add(new Rectangle());
@@ -87,33 +92,31 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int desiredWidth = 400;
-        int desiredHeight = 400;
-
-        int width;
-        int height;
 
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
+        int width;
+        int height;
+
 //Measure Width
         if (widthMode == MeasureSpec.EXACTLY) {
             width = widthSize;
         } else if (widthMode == MeasureSpec.AT_MOST) {
-            width = Math.min(desiredWidth, widthSize);
+            width = Math.min(DESIRE_WIDTH, widthSize);
         } else {
-            width = desiredWidth;
+            width = DESIRE_WIDTH;
         }
 
 //Measure Height
         if (heightMode == MeasureSpec.EXACTLY) {
             height = heightSize;
         } else if (heightMode == MeasureSpec.AT_MOST) {
-            height = Math.min(desiredHeight, heightSize);
+            height = Math.min(DESIRE_HEIGHT, heightSize);
         } else {
-            height = desiredHeight;
+            height = DESIRE_HEIGHT;
         }
 
         mSideSize = Math.min(width, height);
@@ -133,10 +136,10 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
 //Draw lines
         for (Line line: lines) {
             mPaint.setAlpha(255);
-            canvas.drawLine(line.firstPoint.x + line.firstPoint.sideSize / 2,
-                            line.firstPoint.y + line.firstPoint.sideSize / 2,
-                            line.secondPoint.x + line.secondPoint.sideSize / 2,
-                            line.secondPoint.y + line.secondPoint.sideSize / 2,
+            canvas.drawLine(line.firstPoint.x + line.firstPoint.halfSideSize,
+                            line.firstPoint.y + line.firstPoint.halfSideSize,
+                            line.secondPoint.x + line.secondPoint.halfSideSize,
+                            line.secondPoint.y + line.secondPoint.halfSideSize,
                             mPaint);
         }
     }
@@ -243,7 +246,6 @@ public class MyCustomView extends View implements ValueAnimator.AnimatorUpdateLi
 
     private void createAndStartAnimationSet() {
         mSet.playTogether(mAnimationList);
-        mSet.addListener(this);
         mSet.start();
     }
 

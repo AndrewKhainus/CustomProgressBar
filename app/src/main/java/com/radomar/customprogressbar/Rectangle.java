@@ -10,6 +10,8 @@ import android.view.View;
 public class Rectangle {
 
     public int sideSize;
+    public int halfSideSize;
+
     public int x;
     public int y;
     public int opacity = 255;
@@ -21,6 +23,7 @@ public class Rectangle {
         this.x = x;
         this.y = y;
         this.sideSize = sideSize;
+        this.halfSideSize = sideSize / 2;
     }
 
 //    private void initCenterCoordinates() {
